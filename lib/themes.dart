@@ -42,7 +42,7 @@ class ThemeConfig {
     errorColor: const Color(0xFFCF6676),
     appBarTheme: const AppBarTheme(
       color: AppConfigs.appBackgroundColorDark,
-      iconTheme: IconThemeData(color: ColorConstants.black),
+      iconTheme: IconThemeData(color: ColorConstants.white),
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.light,

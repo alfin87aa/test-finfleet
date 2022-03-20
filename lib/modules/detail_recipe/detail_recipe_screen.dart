@@ -28,94 +28,42 @@ class DetailRecipeScreen extends GetView<DetailRecipeController> {
   }
 
   Widget widgetBody(BuildContext context) {
-    return Stack(children: [
-      Padding(
-        padding: const EdgeInsets.only(left: 8.0, top: 28.0),
-        child: IconButton(
-            onPressed: () => Get.back(),
-            icon: const Icon(Icons.arrow_back_ios_new)),
-      ),
-      Container(
-        margin: EdgeInsets.only(top: Get.height * 0.1),
-        padding: const EdgeInsets.symmetric(horizontal: 28.0),
-        height: Get.height,
-        width: Get.width,
-        decoration: BoxDecoration(
-          color: Theme.of(context).bottomAppBarColor,
-          borderRadius: const BorderRadius.vertical(
-            top: Radius.circular(32),
+    return SingleChildScrollView(
+      child: Stack(children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0, top: 28.0),
+          child: IconButton(
+              onPressed: () => Get.back(),
+              icon: const Icon(Icons.arrow_back_ios_new)),
+        ),
+        Container(
+          margin: EdgeInsets.only(top: Get.height * 0.1),
+          padding: const EdgeInsets.symmetric(horizontal: 28.0),
+          height: Get.height,
+          width: Get.width,
+          decoration: BoxDecoration(
+            color: Theme.of(context).bottomAppBarColor,
+            borderRadius: const BorderRadius.vertical(
+              top: Radius.circular(32),
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              shareFavoriteIcon(),
+              categoryWidget(),
+              nameWidget(),
+              durationIngCal(),
+              widgetTags(),
+              widgetDescription(context),
+              widgetIngredient(context),
+              widgetStep(context),
+            ],
           ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            shareFavoriteIcon(),
-            categoryWidget(),
-            nameWidget(),
-            durationIngCal(),
-            widgetTags(),
-            widgetDescription(context),
-            widgetIngredient(context),
-            Text(
-              "Let's make it step by step",
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyLarge
-                  ?.copyWith(fontWeight: FontWeight.bold),
-            ),
-            ListView.builder(
-              itemCount: controller.recipe.steps.length,
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  height: Get.width * 0.3,
-                  width: Get.width,
-                  decoration: boxDecoration(
-                      bgColor: Theme.of(context).bottomAppBarColor,
-                      radius: 10,
-                      showShadow: true),
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        controller.recipe.steps[index].image,
-                        fit: BoxFit.fitHeight,
-                        width: Get.width * 0.3,
-                        height: Get.width * 0.3,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: SizedBox(
-                          width: Get.width * 0.46,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Step ' +
-                                    controller.recipe.steps[index].id
-                                        .toString(),
-                              ),
-                              Text(
-                                controller.recipe.steps[index].description,
-                                maxLines: 3,
-                                textAlign: TextAlign.left,
-                                overflow: TextOverflow.ellipsis,
-                              )
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
-    ]);
+      ]),
+    );
   }
 
   Widget shareFavoriteIcon() {
@@ -247,7 +195,7 @@ class DetailRecipeScreen extends GetView<DetailRecipeController> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Ingredients (" +
+          "ingredients (".tr +
               controller.recipe.ingredients.length.toString() +
               ")",
           style: Theme.of(context)
@@ -287,6 +235,67 @@ class DetailRecipeScreen extends GetView<DetailRecipeController> {
               );
             },
           ),
+        ),
+      ],
+    );
+  }
+
+  Widget widgetStep(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(
+          "let's make it step by step".tr,
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge
+              ?.copyWith(fontWeight: FontWeight.bold),
+        ),
+        ListView.builder(
+          shrinkWrap: true,
+          itemCount: controller.recipe.steps.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Container(
+              height: Get.width * 0.3,
+              width: Get.width,
+              decoration: boxDecoration(
+                  bgColor: Theme.of(context).bottomAppBarColor,
+                  radius: 10,
+                  showShadow: true),
+              child: Row(
+                children: [
+                  Image.asset(
+                    controller.recipe.steps[index].image,
+                    fit: BoxFit.fitHeight,
+                    width: Get.width * 0.3,
+                    height: Get.width * 0.3,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: SizedBox(
+                      width: Get.width * 0.46,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Step ' +
+                                controller.recipe.steps[index].id.toString(),
+                          ),
+                          Text(
+                            controller.recipe.steps[index].description,
+                            maxLines: 3,
+                            textAlign: TextAlign.left,
+                            overflow: TextOverflow.ellipsis,
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            );
+          },
         ),
       ],
     );

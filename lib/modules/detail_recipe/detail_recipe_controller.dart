@@ -9,6 +9,5 @@ class DetailRecipeController extends GetxController {
     super.onInit();
 
     _recipe = Get.arguments['recipe'];
-    print(_recipe.tags);
   }
 }

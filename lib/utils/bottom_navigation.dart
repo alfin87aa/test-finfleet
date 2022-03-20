@@ -55,7 +55,6 @@ class _BottomNavigationTile extends StatelessWidget {
   const _BottomNavigationTile(
       this.item, this.opacity, this.animation, this.iconSize,
       {this.onTap,
-      this.colorTween,
       this.flex,
       this.selected = false,
       this.indexLabel,
@@ -66,7 +65,6 @@ class _BottomNavigationTile extends StatelessWidget {
   final Animation<double> animation;
   final double iconSize;
   final VoidCallback? onTap;
-  final ColorTween? colorTween;
   final double? flex;
   final bool selected;
   final String? indexLabel;
@@ -122,7 +120,6 @@ class _BottomNavigationTile extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
                     _TileIcon(
-                      colorTween: colorTween,
                       animation: animation,
                       iconSize: iconSize,
                       selected: selected,
@@ -157,14 +154,12 @@ class _BottomNavigationTile extends StatelessWidget {
 class _TileIcon extends StatelessWidget {
   const _TileIcon({
     Key? key,
-    required this.colorTween,
     required this.animation,
     required this.iconSize,
     required this.selected,
     required this.item,
   }) : super(key: key);
 
-  final ColorTween? colorTween;
   final Animation<double> animation;
   final double iconSize;
   final bool selected;
