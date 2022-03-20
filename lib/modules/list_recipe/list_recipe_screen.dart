@@ -36,7 +36,6 @@ class ListRecipeScreen extends GetView<ListRecipeController> {
                                 child: TextField(
                                   textAlignVertical: TextAlignVertical.center,
                                   autofocus: false,
-                                  // style: primaryTextStyle(),
                                   decoration: InputDecoration(
                                     filled: true,
                                     hintText: 'search'.tr,

@@ -16,13 +16,13 @@
                 "image": "assets/images/prawn.png"
             }, {
                 "name": "Corn flour",
-                "image": "assets/images/"
+                "image": "assets/images/corn-flour.jpg"
             }, {
                 "name": "Egges",
-                "image": "assets/images/"
+                "image": "assets/images/egg.png"
             }, {
                 "name": "Tomato",
-                "image": "assets/images/"
+                "image": "assets/images/tomato.png"
             }],
             "steps": [{
                 "id": 1,
@@ -41,13 +41,13 @@
             "tags": ["Chinese", "Dinner", "3 Ingredients", "Beautiful"],
             "ingredients": [{
                 "name": "Chicken",
-                "image": "assets/images/"
+                "image": "assets/images/chicken.png"
             }, {
                 "name": "Sausage",
-                "image": "assets/images/"
+                "image": "assets/images/sausage.png"
             }, {
                 "name": "Flour",
-                "image": "assets/images/"
+                "image": "assets/images/flour.jpg"
             }],
             "steps": [{
                 "id": 1,
@@ -66,19 +66,19 @@
             "tags": ["Chinese", "Dinner", "5 Ingredients", "Beautiful"],
             "ingredients": [{
                 "name": "Noodles",
-                "image": "assets/images/"
+                "image": "assets/images/noodle.png"
             }, {
                 "name": "Prawn",
-                "image": "assets/images/"
+                "image": "assets/images/prawn.png"
             }, {
                 "name": "Corn flour",
-                "image": "assets/images/"
+                "image": "assets/images/corn-flour.jpg"
             }, {
                 "name": "Egges",
-                "image": "assets/images/"
+                "image": "assets/images/egg.png"
             }, {
                 "name": "Tomato",
-                "image": "assets/images/"
+                "image": "assets/images/tomato.png"
             }],
             "steps": [{
                 "id": 1,
@@ -97,22 +97,22 @@
             "tags": ["Chinese", "Dinner", "6 Ingredients", "Beautiful"],
             "ingredients": [{
                 "name": "Noodles",
-                "image": "assets/images/"
+                "image": "assets/images/noodle.png"
             }, {
                 "name": "Chicken",
-                "image": "assets/images/"
+                "image": "assets/images/chicken.png"
             }, {
                 "name": "Prawn",
-                "image": "assets/images/"
+                "image": "assets/images/prawn.png"
             }, {
                 "name": "Corn flour",
-                "image": "assets/images/"
+                "image": "assets/images/corn-flour.jpg"
             }, {
                 "name": "Egges",
-                "image": "assets/images/"
+                "image": "assets/images/egg.png"
             }, {
                 "name": "Tomato",
-                "image": "assets/images/"
+                "image": "assets/images/tomato.png"
             }],
             "steps": [{
                 "id": 1,
@@ -131,19 +131,19 @@
             "tags": ["Chinese", "Dinner", "5 Ingredients", "Beautiful"],
             "ingredients": [{
                 "name": "Noodles",
-                "image": "assets/images/"
+                "image": "assets/images/noodle.png"
             }, {
                 "name": "Prawn",
-                "image": "assets/images/"
+                "image": "assets/images/prawn.png"
             }, {
                 "name": "Corn flour",
-                "image": "assets/images/"
+                "image": "assets/images/corn-flour.jpg"
             }, {
                 "name": "Egges",
-                "image": "assets/images/"
+                "image": "assets/images/egg.png"
             }, {
                 "name": "Tomato",
-                "image": "assets/images/"
+                "image": "assets/images/tomato.png"
             }],
             "steps": [{
                 "id": 1,
