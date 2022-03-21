@@ -12,20 +12,41 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      enableLog: true,
-      initialRoute: Routes.LIST,
-      defaultTransition: Transition.fade,
-      getPages: AppPages.routes,
-      initialBinding: ListRecipeBinding(),
-      smartManagement: SmartManagement.keepFactory,
-      title: AppConfigs.appName,
-      theme: ThemeConfig.lightTheme,
-      darkTheme: ThemeConfig.darkTheme,
-      locale: TranslationService.locale,
-      fallbackLocale: TranslationService.fallbackLocale,
-      translations: TranslationService(),
+    return DismissKeyboard(
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        enableLog: true,
+        initialRoute: Routes.LIST,
+        defaultTransition: Transition.fade,
+        getPages: AppPages.routes,
+        initialBinding: ListRecipeBinding(),
+        smartManagement: SmartManagement.keepFactory,
+        title: AppConfigs.appName,
+        theme: ThemeConfig.lightTheme,
+        darkTheme: ThemeConfig.darkTheme,
+        locale: TranslationService.locale,
+        fallbackLocale: TranslationService.fallbackLocale,
+        translations: TranslationService(),
+      ),
+    );
+  }
+}
+
+class DismissKeyboard extends StatelessWidget {
+  final Widget child;
+  const DismissKeyboard({Key? key, required this.child}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus &&
+            currentFocus.focusedChild != null) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        }
+      },
+      child: child,
     );
   }
 }

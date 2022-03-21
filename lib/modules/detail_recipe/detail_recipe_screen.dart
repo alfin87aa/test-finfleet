@@ -39,7 +39,7 @@ class DetailRecipeScreen extends GetView<DetailRecipeController> {
         Container(
           margin: EdgeInsets.only(top: Get.height * 0.1),
           padding: const EdgeInsets.symmetric(horizontal: 28.0),
-          height: Get.height,
+          height: Get.height * 1.1,
           width: Get.width,
           decoration: BoxDecoration(
             color: Theme.of(context).bottomAppBarColor,
@@ -211,7 +211,7 @@ class DetailRecipeScreen extends GetView<DetailRecipeController> {
             itemCount: controller.recipe.ingredients.length,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.only(right: 8.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -219,7 +219,6 @@ class DetailRecipeScreen extends GetView<DetailRecipeController> {
                         height: Get.width * 0.2,
                         width: Get.width * 0.2,
                         padding: const EdgeInsets.all(8.0),
-                        // margin: const EdgeInsets.only(right: 12.0),
                         decoration: BoxDecoration(
                             color: Theme.of(context).scaffoldBackgroundColor,
                             borderRadius: BorderRadius.circular(8.0)),
@@ -241,63 +240,76 @@ class DetailRecipeScreen extends GetView<DetailRecipeController> {
   }
 
   Widget widgetStep(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Text(
-          "let's make it step by step".tr,
-          style: Theme.of(context)
-              .textTheme
-              .bodyLarge
-              ?.copyWith(fontWeight: FontWeight.bold),
-        ),
-        ListView.builder(
-          shrinkWrap: true,
-          itemCount: controller.recipe.steps.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Container(
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: controller.recipe.steps.length,
+      itemBuilder: (BuildContext context, int index) {
+        if (index == 0) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                "let's make it step by step".tr,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge
+                    ?.copyWith(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 8.0,
+              ),
+              cardStep(context, index)
+            ],
+          );
+        } else {
+          return cardStep(context, index);
+        }
+      },
+    );
+  }
+
+  Widget cardStep(BuildContext context, int index) {
+    return Container(
+      height: Get.width * 0.3,
+      width: Get.width,
+      decoration: boxDecoration(
+          bgColor: Theme.of(context).bottomAppBarColor,
+          radius: 10,
+          showShadow: true),
+      child: Row(
+        children: [
+          Container(
               height: Get.width * 0.3,
-              width: Get.width,
-              decoration: boxDecoration(
-                  bgColor: Theme.of(context).bottomAppBarColor,
-                  radius: 10,
-                  showShadow: true),
-              child: Row(
+              width: Get.width * 0.3,
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(8.0)),
+              child: Image.asset(
+                controller.recipe.steps[index].image,
+                fit: BoxFit.fill,
+              )),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: SizedBox(
+              width: Get.width * 0.4,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image.asset(
-                    controller.recipe.steps[index].image,
-                    fit: BoxFit.fitHeight,
-                    width: Get.width * 0.3,
-                    height: Get.width * 0.3,
+                  Text(
+                    'Step ' + controller.recipe.steps[index].id.toString(),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: SizedBox(
-                      width: Get.width * 0.46,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Step ' +
-                                controller.recipe.steps[index].id.toString(),
-                          ),
-                          Text(
-                            controller.recipe.steps[index].description,
-                            maxLines: 3,
-                            textAlign: TextAlign.left,
-                            overflow: TextOverflow.ellipsis,
-                          )
-                        ],
-                      ),
-                    ),
+                  Text(
+                    controller.recipe.steps[index].description,
+                    maxLines: 3,
+                    textAlign: TextAlign.left,
+                    overflow: TextOverflow.ellipsis,
                   )
                 ],
               ),
-            );
-          },
-        ),
-      ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }

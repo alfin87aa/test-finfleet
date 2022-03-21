@@ -27,6 +27,8 @@ class ListRecipeScreen extends GetView<ListRecipeController> {
                         radius: 4.0,
                         showShadow: true),
                     child: TextField(
+                      onChanged: (value) => controller.searchRecipe(value),
+                      controller: controller.searchController,
                       textAlignVertical: TextAlignVertical.center,
                       autofocus: false,
                       decoration: InputDecoration(
@@ -57,7 +59,24 @@ class ListRecipeScreen extends GetView<ListRecipeController> {
                         color: AppConfigs.appPrimaryColor,
                       ),
                       onPressed: () {
-                        Get.bottomSheet(Container(),
+                        Get.bottomSheet(
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    width: 32,
+                                    height: 4,
+                                    margin: const EdgeInsets.only(right: 4),
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall!
+                                        .color!
+                                        .withOpacity(0.3),
+                                  ),
+                                ],
+                              ),
+                            ),
                             elevation: 20.0,
                             enableDrag: true,
                             backgroundColor:
@@ -74,10 +93,9 @@ class ListRecipeScreen extends GetView<ListRecipeController> {
               ),
             ),
             body: ListView.builder(
-              itemCount: controller.recipeModel.recipe.length,
+              itemCount: controller.recipeList.length,
               itemBuilder: (BuildContext context, int index) {
-                return cardRecipe(
-                    context, controller.recipeModel.recipe[index]);
+                return cardRecipe(context, controller.recipeList[index]);
               },
             ),
             bottomNavigationBar: BubbleBottomBar(
